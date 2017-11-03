@@ -4,7 +4,7 @@ require 'random_data'
     user= User.new(
         email: RandomData.random_email,
         password: "password",
-        #role: "standard"
+        role: "standard"
         )
     user.save!
 end
