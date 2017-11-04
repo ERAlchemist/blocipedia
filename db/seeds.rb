@@ -1,8 +1,9 @@
-require 'random_data'
+#require 'random_data'
+require 'faker'
 
 10.times do 
     user= User.new(
-        email: RandomData.random_email,
+        email: Faker::Internet.email,
         password: "password",
         role: "standard"
         )
@@ -10,15 +11,36 @@ require 'random_data'
 end
 
 users = User.all
-
-20.times do
-    Wiki.create!(
-        title: RandomData.random_sentence,
-        body: RandomData.random_paragraph,
-        private: false,
-        user: User.last
-        )
+2.times do
+    users.each do |user|
+        Wiki.create!(
+            title: Faker::Hipster.sentence,
+            body: Faker::Hipster.paragraph,
+            private: false,
+            user: user
+            )
+    end
 end
+
+def norris_fake_paragraph
+    paragraph = ""
+    5.times do
+        paragraph += Faker::ChuckNorris.fact
+    end
+    paragraph
+end
+
+2.times do
+    users.each do |user|
+        Wiki.create!(
+            title: Faker::ChuckNorris.fact,
+            body: norris_fake_paragraph,
+            private: false,
+            user: user
+            )
+    end
+end
+
 
 wikis = Wiki.all
 
