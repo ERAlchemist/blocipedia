@@ -49,6 +49,8 @@ source 'https://rubygems.org'
 	gem 'pundit'
 
 	gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
+
+	gem 'stripe'
  
 	group :development do
 	 gem 'listen', '~> 3.0.5'
