@@ -16,6 +16,11 @@
           <%= f.label :title %>
           <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
         </div>
+        <% if user_is_authorized_to_delete? %>
+        <div class="form-group">
+            <%= f.label :private, class: 'checkbox' do %>
+                <%= f.check_box :private %> Private wiki
+        <% end %>
 
         <div class="form-group">
             <%= f.label :body %>
