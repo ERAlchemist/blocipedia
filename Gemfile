@@ -51,6 +51,8 @@ source 'https://rubygems.org'
 	gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 
 	gem 'stripe'
+
+	gem 'redcarpet'
  
 	group :development do
 	 gem 'listen', '~> 3.0.5'
