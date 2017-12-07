@@ -9,8 +9,15 @@
   <div class="row">
     <div class="col-md-8">
       <p><%= markdown(@wiki.body) %></p>
-    </div>
+      <p><strong>Created by:</strong> <%= @wiki.user.email %></p>
+     
 
+         <% unless @wiki.collaborator_users.empty? %> 
+          <p><strong>Collaborators:</strong><br>
+              <%= show_collaborators %>
+          <% end %></p>
+    </div>
+    
     <div class="col-md-4">
       <% if user_is_authorized_to_update? %>
         <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>

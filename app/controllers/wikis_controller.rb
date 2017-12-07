@@ -1,13 +1,22 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def show
     @wiki = Wiki.find(params[:id])
-    unless (@wiki.private == false) || @wiki.user == current_user || current_user.admin?
+    if current_user.present?
+      #collaborators = []
+      #@wiki.collaborators.each do |collaborator|
+        #collaborators << collaborator.email
+      #end
+      unless (@wiki.private == false) || @wiki.user == current_user || collaborators.include?(current_user.email) || current_user.admin?
+        flash[:alert] = "You are not authorized to view this wiki."
+        redirect_to new_charge_path
+      end
+    else
       flash[:alert] = "You are not authorized to view this wiki."
-      redirect_to new_charge_path
+      redirect_to new_user_registration_path
     end
   end
 
@@ -28,6 +37,8 @@ class WikisController < ApplicationController
     @wiki.private = params[:wiki][:private]
     @wiki.user = current_user
     authorize @wiki
+    emails = params[:wiki][:add_collaborator].split(',').map(&:strip)
+    @wiki.collaborator_users = User.where(email: emails)
     
     if @wiki.save
       flash[:notice] = "Your wiki was saved successfully."
@@ -38,15 +49,20 @@ class WikisController < ApplicationController
     end
   end
 
-  def update
+  def update 
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
     @wiki.private = params[:wiki][:private]
     authorize @wiki
-  
-    
-    if @wiki.save
+    emails = params[:wiki][:add_collaborator].split(',').map(&:strip)
+    @wiki.collaborator_users = User.where(email: emails)
+
+    if @wiki.save && (@wiki.user == current_user || current_user.admin?)
+     
+      flash[:notice] = "Wiki was updated successfully."
+      redirect_to @wiki
+    elsif @wiki.save
       flash[:notice] = "Wiki was updated successfully."
       redirect_to @wiki
     else
@@ -58,8 +74,6 @@ class WikisController < ApplicationController
   def destroy
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-  
-    
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
       redirect_to wikis_path

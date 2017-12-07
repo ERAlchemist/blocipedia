@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable 
   has_many :wikis, dependent: :destroy
+  has_many :collaborators
+  has_many :collaborated_wikis, through: :collaborators, source: :wiki
 
   after_initialize :initialize_role
   

@@ -1,0 +1,15 @@
+ <div class="form-group">
+        <div class="col-md-8">
+                <%= form_for @wiki do |f| %>
+                <div class="form-group">
+                        <%= f.label :add_collaborator%>
+                        <%= f.text_field :add_collaborator,
+                                class: 'form-control',
+                                placeholder: "Enter collaborator emails (separated by commas)",
+                                value: @wiki.collaborator_users.map(&:email).join(', ') %>
+                        <%= f.submit "Save", class: 'btn btn-success' %>
+                </div>
+                <% end %>
+                </div>
+        </div>
+  </div>
