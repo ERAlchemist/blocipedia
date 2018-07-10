@@ -10,7 +10,7 @@ clone and run locally:
 
 <pre><code>$ git clone https://github.com/ERAlchemist/blocipedia.git</pre></code>
 
-<pre><code>$ cd Blocipedia</pre></code>
+<pre><code>$ cd blocipedia</pre></code>
 
 <pre><code>$ bundle install</pre></code>
 
