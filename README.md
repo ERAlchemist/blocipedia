@@ -1,7 +1,7 @@
-<<<<<<< HEAD
-## Blocipedia
 
-# SaaS Wiki Collaboration Tool
+# Blocipedia
+
+## SaaS Wiki Collaboration Tool
 
 
 To run Blocipedia locally:
