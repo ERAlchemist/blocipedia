@@ -11,7 +11,6 @@ module WikisHelper
         current_user && (current_user == @wiki.user || current_user.admin?)
     end
 
-    
     def show_collaborators
         @wiki.collaborator_users.collect{|user| user.email}.join(', ')
     end

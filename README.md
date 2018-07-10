@@ -1,26 +1,21 @@
 <<<<<<< HEAD
-# README
+## Blocipedia
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# SaaS Wiki Collaboration Tool
 
-Things you may want to cover:
 
-* Ruby version
+To run Blocipedia locally:
 
-* System dependencies
+clone and run locally:
 
-* Configuration
+<pre><code>$ git clone https://github.com/ERAlchemist/blocipedia.git</pre></code>
 
-* Database creation
+<pre><code>$ cd Blocipedia</pre></code>
 
-* Database initialization
+<pre><code>$ bundle install</pre></code>
 
-* How to run the test suite
+<pre><code>$ rails s</pre></code>
 
-* Services (job queues, cache servers, search engines, etc.)
+<hr>
 
-* Deployment instructions
-
-* ...
-
+Built for the [Bloc: Full-Stack Web Development Program](http://Bloc.io) 
